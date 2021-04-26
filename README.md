@@ -30,6 +30,7 @@ kubectl describe daemonset kube-proxy -n kube-system
 ### Выясните причину, по которой pod  frontend  находится в статусе  Error
 
 В логах kubectl logs frontend видно что из-за незаданной переменной окружения PRODUCT_CATALOG_SERVICE_ADDR контейнер падает с паникой
+В примере манифеста так же указаны еще несколько переменных окружения отсутствие которое вызовет панику
 
 ```
 panic: environment variable "PRODUCT_CATALOG_SERVICE_ADDR" not set
