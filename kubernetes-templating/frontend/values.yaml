@@ -1,0 +1,18 @@
+image:
+  tag: v0.1.3
+replicas: 1
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8080
+  NodePort: 30001
+
+ingress:
+  servicePort: 8080
+  host: shop.34.116.223.105.nip.io
+
+chart:
+  name: frontend
+
+labels:
+  app: frontend
