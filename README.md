@@ -88,4 +88,4 @@ Ken дана роль view
 Создан сервис для деплоймента
 Установлен Prometheus-operator через helm
 создан ServiceMоnitor
-![plot](./kubernetes_monitoring/images/screenshot.png)
+![plot](./images/screenshot.png)
