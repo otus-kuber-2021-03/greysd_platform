@@ -80,3 +80,12 @@ Ken дана роль view
 Создан Headless statefulset
 Создан Secret
 исправлен statefulset на использование secret
+
+## Задание 9
+
+Создан Dockerfile с nginx и с конфигом где описан basic_status
+Создан deployment с контейнером nginx и nginx_exporter
+Создан сервис для деплоймента
+Установлен Prometheus-operator через helm
+создан ServiceMоnitor
+![plot](./kubernetes_monitoring/images/screenshot.png)
