@@ -88,5 +88,5 @@ Ken дана роль view
 - [x] Создан сервис для деплоймента
 - [x] Установлен Prometheus-operator через helm
 - [x] создан ServiceMоnitor
-- [x] сделан ыкриншот в графане
+- [x] сделан скриншот в графане
 ![Screenshot](kubernetes-monitoring/images/screenshot.png)
