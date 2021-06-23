@@ -83,9 +83,10 @@ Ken дана роль view
 
 ## Задание 9
 
-Создан Dockerfile с nginx и с конфигом где описан basic_status
-Создан deployment с контейнером nginx и nginx_exporter
-Создан сервис для деплоймента
-Установлен Prometheus-operator через helm
-создан ServiceMоniton
+- [x] Создан Dockerfile с nginx и с конфигом где описан basic_status
+- [x] Создан deployment с контейнером nginx и nginx_exporter
+- [x] Создан сервис для деплоймента
+- [x] Установлен Prometheus-operator через helm
+- [x] создан ServiceMоnitor
+- [x] сделан ыкриншот в графане
 ![Screenshot](kubernetes-monitoring/images/screenshot.png)
