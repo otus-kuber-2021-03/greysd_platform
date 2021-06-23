@@ -87,5 +87,5 @@ Ken дана роль view
 Создан deployment с контейнером nginx и nginx_exporter
 Создан сервис для деплоймента
 Установлен Prometheus-operator через helm
-создан ServiceMоnitor
-![plot](./images/screenshot.png)
+создан ServiceMоniton
+![Screenshot](kubernetes-monitoring/images/screenshot.png)
