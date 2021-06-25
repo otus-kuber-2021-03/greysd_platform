@@ -1,0 +1,55 @@
+environments:
+  production:
+    values:
+    - charts:
+        versions:
+          nginxingress: 1.41.3
+          certmanager: 0.16.1
+          chartmuseum: 2.13.2
+          harbor: 1.1.2
+
+
+repositories:
+- name: stable
+  url: https://charts.helm.sh/stable
+- name: jetstack
+  url: https://charts.jetstack.io
+- name: harbor
+  url: https://helm.goharbor.io
+
+helmDefaults:
+  wait: true
+
+releases:
+  - name: nginx-ingress
+    namespace: nginx-ingress
+    chart: stable/nginx-ingress
+    version: {{ .Values.charts.versions.nginxingress }}
+  
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: {{ .Values.charts.versions.certmanager }}
+    values:
+      - installCRDs: true
+    needs:
+      - nginx-ingress
+    hooks:
+      - events: ["postsync"]
+        showlogs: true
+        command: "/bin/sh"
+        args: ["-c", "kubectl apply -f cert-manager/resources.yaml"]
+  
+  - name: chartmuseum
+    namespace: chartmuseum
+    chart: stable/chartmuseum
+    version: {{ .Values.charts.versions.chartmuseum}}
+    values:
+      - chartmuseum/values.yaml
+  
+  - name: harbor
+    namespace: harbor
+    chart: harbor/harbor
+    version: {{ .Values.charts.versions.harbor }}
+    values:
+      - harbor/values.yaml
