@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    release: prometheus
+spec:
+  endpoints:
+  - interval: 30s
+    port: exporter
+  namespaceSelector:
+    matchNames: 
+    - app
+  selector:
+    matchLabels:
+      app: nginx

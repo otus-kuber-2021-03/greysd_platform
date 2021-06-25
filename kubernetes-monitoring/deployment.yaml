@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: nginx
+          image: greysd/otus-nginx
+          ports:
+            - containerPort: 80
+        - name: exporter
+          image: nginx/nginx-prometheus-exporter:latest
+          args: ["-nginx.scrape-uri=http://localhost:80/basic_status"]
+          ports:
+            - containerPort: 9113
