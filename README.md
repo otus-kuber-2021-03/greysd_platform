@@ -1,9 +1,9 @@
 # greysd_platform
 greysd Platform repository
 
-##Задание 1
+## Задание 1
 
-###Почему все pod в namespace kube-system восстановились после удаления
+### Почему все pod в namespace kube-system восстановились после удаления
 
 Все под с суфиксом названия машины (в данном случае minikube) статические pod. Kubelet наблюдает за каждым статическим подом и автоматически перезапускает, если они падают)
 Статические поды:
@@ -91,4 +91,12 @@ Ken дана роль view
 
 Надо немного изменить запрос sh -c "pidof grep my_web_server_process"
 
+## Задание 9
 
+- [x] Создан Dockerfile с nginx и с конфигом где описан basic_status
+- [x] Создан deployment с контейнером nginx и nginx_exporter
+- [x] Создан сервис для деплоймента
+- [x] Установлен Prometheus-operator через helm
+- [x] создан ServiceMоnitor
+- [x] сделан скриншот в графане
+![Screenshot](kubernetes-monitoring/images/screenshot.png)
