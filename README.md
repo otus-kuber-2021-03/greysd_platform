@@ -90,3 +90,25 @@ Ken дана роль view
 - [x] создан ServiceMоnitor
 - [x] сделан скриншот в графане
 ![Screenshot](kubernetes-monitoring/images/screenshot.png)
+
+## Задание kubernetes-operators
+
+ресурсы создаются потому что контроллер получает существуещее состояние CR как ADDED
+
+#Состояние jobs
+kubectl get jobs
+NAME                         COMPLETIONS   DURATION   AGE
+backup-mysql-instance-job    1/1           1s         58m
+restore-mysql-instance-job   1/1           42s        37m
+
+# SQL запрос
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
+mysql: [Warning] Using a password on the command line interface can be insecure.
++----+-------------+
+| id | name        |
++----+-------------+
+|  1 | some data   |
+|  2 | some data-2 |
++----+-------------+
+
+
