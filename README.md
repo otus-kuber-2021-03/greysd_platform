@@ -121,4 +121,37 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 |  2 | some data-2 |
 +----+-------------+
 
+# Задание kubernetes-gitops
+Название Deploy обновилось
+k -n microservices-demo get deploy
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+frontend-hipster   1/1     1            1           42s
+
+Логи:
+ts=2021-08-06T17:12:33.914016838Z caller=helm.go:69 component=helm version=v3 info="preparing upgrade for frontend" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:33.920237393Z caller=helm.go:69 component=helm version=v3 info="resetting values to the chart's original version" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.566674247Z caller=helm.go:69 component=helm version=v3 info="performing update for frontend" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.595507533Z caller=helm.go:69 component=helm version=v3 info="creating upgraded release for frontend" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.610501104Z caller=helm.go:69 component=helm version=v3 info="checking 5 resources for changes" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.617218977Z caller=helm.go:69 component=helm version=v3 info="Looks like there are no changes for Service \"frontend\"" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.628552375Z caller=helm.go:69 component=helm version=v3 info="Created a new Deployment called \"frontend-hipster\" in microservices-demo\n" targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.808647809Z caller=helm.go:69 component=helm version=v3 info="Deleting \"frontend\" in microservices-demo..." targetNamespace=microservices-demo release=frontend
+ts=2021-08-06T17:12:34.885470284Z caller=helm.go:69 component=helm version=v3 info="updating status for upgraded release for frontend" targetNamespace=microservices-demo release=frontend
+
+
+
+ссылка на инфраструктурный репозиторий git@gitlab.com:greysd/microservices-demo.git
+
+kubectl get canaries.flagger.app -n microservices-demo
+NAMESPACE            NAME       STATUS      WEIGHT   LASTTRANSITIONTIME
+microservices-demo   frontend   Succeeded   0        2021-08-09T11:39:57Z
+
+kubectl describe canaries.flagger.app frontend -n microservices-demo
+Events:
+  Type     Reason  Age                 From     Message
+  ----     ------  ----                ----     -------
+  Warning  Synced  17m (x51 over 42m)  flagger  deployment frontend.microservices-demo get query error: deployments.apps "frontend" not found
+  Normal   Synced  4m56s               flagger  New revision detected! Scaling up frontend.microservices-demo
+  Normal   Synced  4m26s               flagger  Starting canary analysis for frontend.microservices-demo
+  Normal   Synced  2m56s               flagger  Advance frontend.microservices-demo canary weight 40
 
